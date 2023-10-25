@@ -1,12 +1,14 @@
+import 'package:alternative_military_service_designated_enterprise/viewmodel/select_military_service_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class SelectMilitaryServiceScreen extends StatelessWidget {
+class SelectMilitaryServiceScreen extends ConsumerWidget {
   const SelectMilitaryServiceScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -26,6 +28,9 @@ class SelectMilitaryServiceScreen extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
+                  ref
+                      .read(selectMilitaryServiceProvider.notifier)
+                      .update((state) => '01');
                   context.go('/search_enterprise');
                 },
                 child: Container(
@@ -54,6 +59,9 @@ class SelectMilitaryServiceScreen extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
+                  ref
+                      .read(selectMilitaryServiceProvider.notifier)
+                      .update((state) => '02');
                   context.go('/search_enterprise');
                 },
                 child: Container(
